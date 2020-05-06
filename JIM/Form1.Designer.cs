@@ -32,20 +32,20 @@
             this.ltb = new System.Windows.Forms.TabPage();
             this.lbt = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.luserpsswdtb = new System.Windows.Forms.TextBox();
+            this.luserpswtb = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lusernametb = new System.Windows.Forms.TextBox();
             this.rtb = new System.Windows.Forms.TabPage();
             this.rebt = new System.Windows.Forms.Button();
             this.sendCodebt = new System.Windows.Forms.Button();
-            this.codetb = new System.Windows.Forms.TextBox();
+            this.mailCodetb = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.rmailtb = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.rruserpsswdtb = new System.Windows.Forms.TextBox();
+            this.rerpswtb = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ruserpsswdtb = new System.Windows.Forms.TextBox();
+            this.ruserpswtb = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.rusernametb = new System.Windows.Forms.TextBox();
             this.lartc.SuspendLayout();
@@ -61,20 +61,20 @@
             this.lartc.Location = new System.Drawing.Point(0, 0);
             this.lartc.Name = "lartc";
             this.lartc.SelectedIndex = 0;
-            this.lartc.Size = new System.Drawing.Size(342, 330);
-            this.lartc.TabIndex = 0;
+            this.lartc.Size = new System.Drawing.Size(359, 330);
+            this.lartc.TabIndex = 3;
             // 
             // ltb
             // 
             this.ltb.Controls.Add(this.lbt);
             this.ltb.Controls.Add(this.label2);
-            this.ltb.Controls.Add(this.luserpsswdtb);
+            this.ltb.Controls.Add(this.luserpswtb);
             this.ltb.Controls.Add(this.label1);
             this.ltb.Controls.Add(this.lusernametb);
             this.ltb.Location = new System.Drawing.Point(4, 22);
             this.ltb.Name = "ltb";
             this.ltb.Padding = new System.Windows.Forms.Padding(3);
-            this.ltb.Size = new System.Drawing.Size(334, 304);
+            this.ltb.Size = new System.Drawing.Size(351, 304);
             this.ltb.TabIndex = 0;
             this.ltb.Text = "登录";
             this.ltb.UseVisualStyleBackColor = true;
@@ -82,10 +82,10 @@
             // lbt
             // 
             this.lbt.Font = new System.Drawing.Font("宋体", 13F);
-            this.lbt.Location = new System.Drawing.Point(240, 269);
+            this.lbt.Location = new System.Drawing.Point(268, 271);
             this.lbt.Name = "lbt";
             this.lbt.Size = new System.Drawing.Size(75, 27);
-            this.lbt.TabIndex = 1;
+            this.lbt.TabIndex = 2;
             this.lbt.Text = "登录";
             this.lbt.UseVisualStyleBackColor = true;
             this.lbt.Click += new System.EventHandler(this.lbt_Click);
@@ -100,16 +100,15 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "密码";
             // 
-            // luserpsswdtb
+            // luserpswtb
             // 
-            this.luserpsswdtb.Font = new System.Drawing.Font("宋体", 13F);
-            this.luserpsswdtb.Location = new System.Drawing.Point(56, 56);
-            this.luserpsswdtb.Multiline = true;
-            this.luserpsswdtb.Name = "luserpsswdtb";
-            this.luserpsswdtb.PasswordChar = '密';
-            this.luserpsswdtb.Size = new System.Drawing.Size(259, 32);
-            this.luserpsswdtb.TabIndex = 2;
-            this.luserpsswdtb.UseSystemPasswordChar = true;
+            this.luserpswtb.Font = new System.Drawing.Font("宋体", 13F);
+            this.luserpswtb.Location = new System.Drawing.Point(56, 56);
+            this.luserpswtb.Multiline = true;
+            this.luserpswtb.Name = "luserpswtb";
+            this.luserpswtb.PasswordChar = '密';
+            this.luserpswtb.Size = new System.Drawing.Size(259, 32);
+            this.luserpswtb.TabIndex = 1;
             // 
             // label1
             // 
@@ -134,20 +133,20 @@
             // 
             this.rtb.Controls.Add(this.rebt);
             this.rtb.Controls.Add(this.sendCodebt);
-            this.rtb.Controls.Add(this.codetb);
+            this.rtb.Controls.Add(this.mailCodetb);
             this.rtb.Controls.Add(this.label7);
             this.rtb.Controls.Add(this.rmailtb);
             this.rtb.Controls.Add(this.label6);
-            this.rtb.Controls.Add(this.rruserpsswdtb);
+            this.rtb.Controls.Add(this.rerpswtb);
             this.rtb.Controls.Add(this.label5);
             this.rtb.Controls.Add(this.label3);
-            this.rtb.Controls.Add(this.ruserpsswdtb);
+            this.rtb.Controls.Add(this.ruserpswtb);
             this.rtb.Controls.Add(this.label4);
             this.rtb.Controls.Add(this.rusernametb);
             this.rtb.Location = new System.Drawing.Point(4, 22);
             this.rtb.Name = "rtb";
             this.rtb.Padding = new System.Windows.Forms.Padding(3);
-            this.rtb.Size = new System.Drawing.Size(334, 304);
+            this.rtb.Size = new System.Drawing.Size(351, 304);
             this.rtb.TabIndex = 1;
             this.rtb.Text = "注册";
             this.rtb.UseVisualStyleBackColor = true;
@@ -158,9 +157,10 @@
             this.rebt.Location = new System.Drawing.Point(222, 266);
             this.rebt.Name = "rebt";
             this.rebt.Size = new System.Drawing.Size(75, 30);
-            this.rebt.TabIndex = 15;
+            this.rebt.TabIndex = 10;
             this.rebt.Text = "注册";
             this.rebt.UseVisualStyleBackColor = true;
+            this.rebt.Click += new System.EventHandler(this.rebt_Click);
             // 
             // sendCodebt
             // 
@@ -168,19 +168,19 @@
             this.sendCodebt.Location = new System.Drawing.Point(222, 194);
             this.sendCodebt.Name = "sendCodebt";
             this.sendCodebt.Size = new System.Drawing.Size(75, 30);
-            this.sendCodebt.TabIndex = 14;
+            this.sendCodebt.TabIndex = 9;
             this.sendCodebt.Text = "发送";
             this.sendCodebt.UseVisualStyleBackColor = true;
+            this.sendCodebt.Click += new System.EventHandler(this.sendCodebt_Click);
             // 
-            // codetb
+            // mailCodetb
             // 
-            this.codetb.Font = new System.Drawing.Font("宋体", 13F);
-            this.codetb.Location = new System.Drawing.Point(114, 192);
-            this.codetb.Name = "codetb";
-            this.codetb.PasswordChar = '密';
-            this.codetb.Size = new System.Drawing.Size(89, 27);
-            this.codetb.TabIndex = 13;
-            this.codetb.UseSystemPasswordChar = true;
+            this.mailCodetb.Font = new System.Drawing.Font("宋体", 13F);
+            this.mailCodetb.Location = new System.Drawing.Point(114, 192);
+            this.mailCodetb.Name = "mailCodetb";
+            this.mailCodetb.Size = new System.Drawing.Size(89, 27);
+            this.mailCodetb.TabIndex = 8;
+            this.mailCodetb.UseSystemPasswordChar = true;
             // 
             // label7
             // 
@@ -197,10 +197,8 @@
             this.rmailtb.Font = new System.Drawing.Font("宋体", 13F);
             this.rmailtb.Location = new System.Drawing.Point(114, 155);
             this.rmailtb.Name = "rmailtb";
-            this.rmailtb.PasswordChar = '密';
             this.rmailtb.Size = new System.Drawing.Size(201, 27);
-            this.rmailtb.TabIndex = 11;
-            this.rmailtb.UseSystemPasswordChar = true;
+            this.rmailtb.TabIndex = 7;
             // 
             // label6
             // 
@@ -212,16 +210,14 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "邮箱";
             // 
-            // rruserpsswdtb
+            // rerpswtb
             // 
-            this.rruserpsswdtb.Font = new System.Drawing.Font("宋体", 13F);
-            this.rruserpsswdtb.Location = new System.Drawing.Point(114, 117);
-            this.rruserpsswdtb.Multiline = true;
-            this.rruserpsswdtb.Name = "rruserpsswdtb";
-            this.rruserpsswdtb.PasswordChar = '密';
-            this.rruserpsswdtb.Size = new System.Drawing.Size(201, 32);
-            this.rruserpsswdtb.TabIndex = 9;
-            this.rruserpsswdtb.UseSystemPasswordChar = true;
+            this.rerpswtb.Font = new System.Drawing.Font("宋体", 13F);
+            this.rerpswtb.Location = new System.Drawing.Point(114, 117);
+            this.rerpswtb.Name = "rerpswtb";
+            this.rerpswtb.PasswordChar = '密';
+            this.rerpswtb.Size = new System.Drawing.Size(201, 27);
+            this.rerpswtb.TabIndex = 6;
             // 
             // label5
             // 
@@ -243,16 +239,14 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "密码";
             // 
-            // ruserpsswdtb
+            // ruserpswtb
             // 
-            this.ruserpsswdtb.Font = new System.Drawing.Font("宋体", 13F);
-            this.ruserpsswdtb.Location = new System.Drawing.Point(114, 79);
-            this.ruserpsswdtb.Multiline = true;
-            this.ruserpsswdtb.Name = "ruserpsswdtb";
-            this.ruserpsswdtb.PasswordChar = '密';
-            this.ruserpsswdtb.Size = new System.Drawing.Size(201, 32);
-            this.ruserpsswdtb.TabIndex = 6;
-            this.ruserpsswdtb.UseSystemPasswordChar = true;
+            this.ruserpswtb.Font = new System.Drawing.Font("宋体", 13F);
+            this.ruserpswtb.Location = new System.Drawing.Point(114, 79);
+            this.ruserpswtb.Name = "ruserpswtb";
+            this.ruserpswtb.PasswordChar = '密';
+            this.ruserpswtb.Size = new System.Drawing.Size(201, 27);
+            this.ruserpswtb.TabIndex = 5;
             // 
             // label4
             // 
@@ -276,7 +270,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 330);
+            this.ClientSize = new System.Drawing.Size(359, 330);
             this.Controls.Add(this.lartc);
             this.Name = "Form1";
             this.Text = "JML";
@@ -295,20 +289,20 @@
         private System.Windows.Forms.TabPage ltb;
         private System.Windows.Forms.Button lbt;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox luserpsswdtb;
+        private System.Windows.Forms.TextBox luserpswtb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox lusernametb;
         private System.Windows.Forms.TabPage rtb;
         private System.Windows.Forms.Button rebt;
         private System.Windows.Forms.Button sendCodebt;
-        private System.Windows.Forms.TextBox codetb;
+        private System.Windows.Forms.TextBox mailCodetb;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox rmailtb;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox rruserpsswdtb;
+        private System.Windows.Forms.TextBox rerpswtb;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox ruserpsswdtb;
+        private System.Windows.Forms.TextBox ruserpswtb;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox rusernametb;
     }
