@@ -22,7 +22,7 @@ namespace JIM
 
         private void lbt_Click(object sender, EventArgs e)
         {
-            // dataGridView1.DataSource= MySQerClass.ExecuteDataTable("select * from user;");
+            MySQLHelperClass.connectionString = "server = localhost; user = root; database = jim; port = 3306; password = thisisjim1!";
 
             if (lusernametb.Text == "" ||
                 luserpswtb.Text == "" )

@@ -31,7 +31,6 @@
             this.sendbt = new System.Windows.Forms.Button();
             this.msgtb = new System.Windows.Forms.TextBox();
             this.msgrtb = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // sendbt
@@ -63,22 +62,11 @@
             this.msgrtb.TabIndex = 4;
             this.msgrtb.Text = "";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(385, 84);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // talkForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 341);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.msgrtb);
             this.Controls.Add(this.msgtb);
             this.Controls.Add(this.sendbt);
@@ -95,6 +83,5 @@
         private System.Windows.Forms.Button sendbt;
         private System.Windows.Forms.TextBox msgtb;
         private System.Windows.Forms.RichTextBox msgrtb;
-        private System.Windows.Forms.Button button1;
     }
 }
