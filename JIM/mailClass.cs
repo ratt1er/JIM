@@ -38,7 +38,7 @@ namespace JIM
        static  string getCode()
         {
             var digit = 6;//声明验证码的位数
-            string codeList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";//字母与数字待挑选
+            string codeList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";//字母与数字待挑选 
             var code = ""; //初始化
 
             Random ra = new Random();

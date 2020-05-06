@@ -22,7 +22,7 @@ namespace JIM
 
         private void lbt_Click(object sender, EventArgs e)
         {
-            // dataGridView1.DataSource= MySQLHelperClass.ExecuteDataTable("select * from user;");
+            // dataGridView1.DataSource= MySQerClass.ExecuteDataTable("select * from user;");
 
             if (MySQLHelperClass.ExecuteScalar("select * from user where username='" + lusernametb.Text + "' and userpsw='" + luserpswtb.Text + "'") == null)
             {

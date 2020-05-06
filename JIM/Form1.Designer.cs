@@ -165,7 +165,7 @@
             // sendCodebt
             // 
             this.sendCodebt.Font = new System.Drawing.Font("宋体", 13F);
-            this.sendCodebt.Location = new System.Drawing.Point(222, 194);
+            this.sendCodebt.Location = new System.Drawing.Point(240, 191);
             this.sendCodebt.Name = "sendCodebt";
             this.sendCodebt.Size = new System.Drawing.Size(75, 30);
             this.sendCodebt.TabIndex = 9;
