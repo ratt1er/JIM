@@ -1,6 +1,6 @@
 ﻿namespace JIM
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -104,10 +104,9 @@
             // 
             this.luserpswtb.Font = new System.Drawing.Font("宋体", 13F);
             this.luserpswtb.Location = new System.Drawing.Point(56, 56);
-            this.luserpswtb.Multiline = true;
             this.luserpswtb.Name = "luserpswtb";
             this.luserpswtb.PasswordChar = '密';
-            this.luserpswtb.Size = new System.Drawing.Size(259, 32);
+            this.luserpswtb.Size = new System.Drawing.Size(259, 27);
             this.luserpswtb.TabIndex = 1;
             // 
             // label1
@@ -124,9 +123,8 @@
             // 
             this.lusernametb.Font = new System.Drawing.Font("宋体", 13F);
             this.lusernametb.Location = new System.Drawing.Point(56, 14);
-            this.lusernametb.Multiline = true;
             this.lusernametb.Name = "lusernametb";
-            this.lusernametb.Size = new System.Drawing.Size(259, 32);
+            this.lusernametb.Size = new System.Drawing.Size(259, 27);
             this.lusernametb.TabIndex = 0;
             // 
             // rtb
@@ -154,7 +152,7 @@
             // rebt
             // 
             this.rebt.Font = new System.Drawing.Font("宋体", 13F);
-            this.rebt.Location = new System.Drawing.Point(222, 266);
+            this.rebt.Location = new System.Drawing.Point(240, 266);
             this.rebt.Name = "rebt";
             this.rebt.Size = new System.Drawing.Size(75, 30);
             this.rebt.TabIndex = 10;
@@ -266,13 +264,13 @@
             this.rusernametb.Size = new System.Drawing.Size(201, 27);
             this.rusernametb.TabIndex = 4;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(359, 330);
             this.Controls.Add(this.lartc);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "JML";
             this.lartc.ResumeLayout(false);
             this.ltb.ResumeLayout(false);

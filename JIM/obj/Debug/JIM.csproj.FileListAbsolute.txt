@@ -3,8 +3,9 @@ E:\code\JIM\JIM\bin\Debug\JIM.exe
 E:\code\JIM\JIM\bin\Debug\JIM.pdb
 E:\code\JIM\JIM\bin\Debug\MySql.Data.dll
 E:\code\JIM\JIM\obj\Debug\JIM.csprojResolveAssemblyReference.cache
-E:\code\JIM\JIM\obj\Debug\JIM.Form1.resources
 E:\code\JIM\JIM\obj\Debug\JIM.Properties.Resources.resources
 E:\code\JIM\JIM\obj\Debug\JIM.csproj.GenerateResource.Cache
 E:\code\JIM\JIM\obj\Debug\JIM.exe
 E:\code\JIM\JIM\obj\Debug\JIM.pdb
+E:\code\JIM\JIM\obj\Debug\JIM.MainForm.resources
+E:\code\JIM\JIM\obj\Debug\JIM.talkForm.resources

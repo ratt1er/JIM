@@ -10,10 +10,10 @@ using System.Windows.Forms;
 using MySQLHelper;
 namespace JIM
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         string code="code";
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             MySQLHelperClass.connectionString = "server = localhost; user = root; database = jim; port = 3306; password = thisisjim1!";
@@ -24,13 +24,23 @@ namespace JIM
         {
             // dataGridView1.DataSource= MySQerClass.ExecuteDataTable("select * from user;");
 
+            if (lusernametb.Text == "" ||
+                luserpswtb.Text == "" )
+            {
+                message("输入框不能为空");
+                return;
+            }
             if (MySQLHelperClass.ExecuteScalar("select * from user where username='" + lusernametb.Text + "' and userpsw='" + luserpswtb.Text + "'") == null)
             {
                 message("账号密码不匹配");
             }
             else 
             {
-                message("登录成功");
+                message("欢迎回来："+lusernametb.Text);
+                 Hide();
+                 talkForm form = new talkForm(lusernametb.Text);
+             form.ShowDialog();
+             Show();
             }
 
 
