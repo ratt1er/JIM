@@ -22,7 +22,8 @@ namespace JIM
 
         private void talkForm_Load(object sender, EventArgs e)
         {
-
+            msgtb.Focus();
+            sizeChange();
             MySQLHelperClass.connectionString = "server = localhost; user = root; database = talkdata; port = 3306; password = thisisjim1!";
           var dataTable= MySQLHelperClass.ExecuteDataTable("show tables");
         
@@ -48,8 +49,12 @@ namespace JIM
 
         private void sendbt_Click(object sender, EventArgs e)
         {
+            sendMsg();
 
-            string today =  DateTime.Now.Year.ToString()+"_" + DateTime.Now.Month+"_" + DateTime.Now.Day;
+        }void sendMsg() 
+        {
+            if (msgtb.Text == "") return;
+            string today = DateTime.Now.Year.ToString() + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day;
             foreach (DataRow item in MySQLHelperClass.ExecuteDataTable("show tables").Rows)
             {
                 if (item[0].ToString() == today)
@@ -71,8 +76,8 @@ namespace JIM
                     username + "','" +
                     msgtb.Text + "','" +
                     DateTime.Now + "')");
-            msgtb.Text = "";
 
+            msgtb.Text = "";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -104,8 +109,8 @@ namespace JIM
         {
             foreach (DataRow item in data.Rows)
             {
-                LogAppend(Color.DarkBlue, item[1]+" : ");
-                LogAppend(Color.Blue, item[3] + "\r\n");
+                LogAppend(Color.Blue, item[1]+" : ");
+                LogAppend(Color.Yellow, item[3] + "\r\n");
                 LogAppend(Color.Green, item[2] + "\r\n");
             }
         }
@@ -113,7 +118,36 @@ namespace JIM
         {
             msgrtb.SelectionColor = color;
             msgrtb.AppendText(text);
-        } 
+        }
+
+        private void talkForm_SizeChanged(object sender, EventArgs e)
+        {
+            sizeChange();
+        }
+        void sizeChange()
+        {
+           
+            sendbt.Left = msgrtb.Right - sendbt.Width;
+            sendbt.Top = splitContainer1.Panel2.Height - sendbt.Height-10;
+            msgtb.Width = splitContainer1.Panel2.Width -sendbt.Width - 30;
+            msgtb.Height = splitContainer1.Panel2.Height-10;
+        
+        }
+
+
+        private void splitContainer1_Panel2_SizeChanged(object sender, EventArgs e)
+        {
+            sizeChange();
+        }
+
+
+        private void msgtb_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers.CompareTo(Keys.Control) == 0 && e.KeyCode == Keys.Enter)
+            {
+                sendMsg();
+            }
+        }
 
     }
 }

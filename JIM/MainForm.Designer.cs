@@ -78,6 +78,7 @@
             this.ltb.TabIndex = 0;
             this.ltb.Text = "登录";
             this.ltb.UseVisualStyleBackColor = true;
+            this.ltb.Click += new System.EventHandler(this.ltb_Click);
             // 
             // lbt
             // 
@@ -108,6 +109,7 @@
             this.luserpswtb.PasswordChar = '密';
             this.luserpswtb.Size = new System.Drawing.Size(259, 27);
             this.luserpswtb.TabIndex = 1;
+            this.luserpswtb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.luserpswtb_KeyPress);
             // 
             // label1
             // 
@@ -126,6 +128,7 @@
             this.lusernametb.Name = "lusernametb";
             this.lusernametb.Size = new System.Drawing.Size(259, 27);
             this.lusernametb.TabIndex = 0;
+            this.lusernametb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lusernametb_KeyPress);
             // 
             // rtb
             // 
@@ -270,8 +273,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(359, 330);
             this.Controls.Add(this.lartc);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "JML";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.lartc.ResumeLayout(false);
             this.ltb.ResumeLayout(false);
             this.ltb.PerformLayout();

@@ -69,7 +69,7 @@ namespace JIM
             }
             if (MySQLHelperClass.ExecuteScalar("SELECT * from user WHERE username='" + rusernametb.Text + "';") != null)
             {
-                message("邮箱已存在");
+                message("用户名");
                 return;
             }
             try
@@ -103,6 +103,32 @@ namespace JIM
             var msg = mailClass.send("from_china@163.com");
             MessageBox.Show(msg[0]);
             code = msg[1];
+        }
+
+        private void lusernametb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar ==13 ) 
+            {
+                luserpswtb.Focus();
+            }
+        }
+
+        private void luserpswtb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                lbt.Focus();
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            lusernametb.Focus();
+        }
+
+        private void ltb_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
