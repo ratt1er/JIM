@@ -67,7 +67,7 @@ namespace JIM
                 message("验证码不匹配");
                 return;
             }
-            if (MySQLHelperClass.ExecuteScalar("SELECT * from user WHERE usermail='" + rmailtb.Text + "';") != null)
+            if (MySQLHelperClass.ExecuteScalar("SELECT * from user WHERE username='" + rusernametb.Text + "';") != null)
             {
                 message("邮箱已存在");
                 return;

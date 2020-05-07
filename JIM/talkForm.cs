@@ -32,11 +32,7 @@ namespace JIM
                if (item[0].ToString() == today)
                {
 
-                   foreach (DataRow itemb in MySQLHelperClass.ExecuteDataTable("select * from " + today).Rows)
-                   {
-                       msgrtb.Text += itemb[1] + ": " + itemb[3] + "\r\n" + itemb[2] + "\r\n";   
-                   }
-
+                  addMsg(MySQLHelperClass.ExecuteDataTable("select * from " + today));
                }
            }
            talkcount = MySQLHelperClass.ExecuteDataTable("select * from " + today).Rows.Count;
@@ -85,12 +81,14 @@ namespace JIM
              var rows = MySQLHelperClass.ExecuteDataTable("select * from " + today).Rows;
              if (rows.Count > talkcount) 
              {
-                 var data= MySQLHelperClass.ExecuteDataTable("select * from "+today+" order by id limit " + talkcount.ToString() + "," + (rows.Count - talkcount).ToString() + ";");
 
-                 foreach (DataRow item in data.Rows)
-                 {
-                     msgrtb.Text += item[1] + ": " + item[3] + "\r\n" + item[2] + "\r\n";
-                 }
+                 addMsg(MySQLHelperClass.ExecuteDataTable("select * from "+
+                     today+
+                     " order by id limit " + 
+                     talkcount.ToString() + 
+                     "," + 
+                     (rows.Count - talkcount).ToString()
+                     + ";"));
                  talkcount = rows.Count;
              }
 
@@ -102,6 +100,20 @@ namespace JIM
 
             msgrtb.ScrollToCaret(); 
         }
+        void addMsg(DataTable data)
+        {
+            foreach (DataRow item in data.Rows)
+            {
+                LogAppend(Color.DarkBlue, item[1]+" : ");
+                LogAppend(Color.Blue, item[3] + "\r\n");
+                LogAppend(Color.Green, item[2] + "\r\n");
+            }
+        }
+        public void LogAppend(Color color, string text)
+        {
+            msgrtb.SelectionColor = color;
+            msgrtb.AppendText(text);
+        } 
 
     }
 }
