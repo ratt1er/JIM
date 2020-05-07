@@ -17,10 +17,10 @@ namespace JIM
             {
                 Client.Host = "smtp.163.com";//SmtpClient的服务器为163网易邮箱
                 Client.UseDefaultCredentials = false;// '验证身份声明使用默认凭据
-                Client.Credentials = new System.Net.NetworkCredential("m13649982725@163.com", "Mjy5201314.");// 发件人进行身份验证的凭据,邮箱和密码
+                Client.Credentials = new System.Net.NetworkCredential("这里填写你的邮箱", "这里填写你的密码");// 发件人进行身份验证的凭据,邮箱和密码
                 Client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;//通过网络发送邮件到 163 Smtp 服务器
-                message = new MailMessage("m13649982725@163.com", mail);//声明一个Mailmessage,初始化发件人邮箱和收件人邮箱
-                message.Subject = "Eastern Star System登录验证";
+                message = new MailMessage("这里填写你的邮箱", mail);//声明一个Mailmessage,初始化发件人邮箱和收件人邮箱
+                message.Subject = "登录验证";
                 var code=getCode();
                 message.Body = "您好,此次验证码为" + code;
                 Client.Send(message);
