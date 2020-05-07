@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.sendbt = new System.Windows.Forms.Button();
             this.msgtb = new System.Windows.Forms.TextBox();
             this.msgrtb = new System.Windows.Forms.RichTextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // sendbt
@@ -61,12 +63,17 @@
             this.msgrtb.Size = new System.Drawing.Size(367, 274);
             this.msgrtb.TabIndex = 4;
             this.msgrtb.Text = "";
+            this.msgrtb.TextChanged += new System.EventHandler(this.msgrtb_TextChanged);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // talkForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 341);
+            this.ClientSize = new System.Drawing.Size(412, 341);
             this.Controls.Add(this.msgrtb);
             this.Controls.Add(this.msgtb);
             this.Controls.Add(this.sendbt);
@@ -83,5 +90,6 @@
         private System.Windows.Forms.Button sendbt;
         private System.Windows.Forms.TextBox msgtb;
         private System.Windows.Forms.RichTextBox msgrtb;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -14,6 +14,7 @@ namespace JIM
     public partial class talkForm : Form
     {
         string username;
+        int talkcount;
         public talkForm()
         {
             InitializeComponent();
@@ -38,6 +39,8 @@ namespace JIM
 
                }
            }
+           talkcount = MySQLHelperClass.ExecuteDataTable("select * from " + today).Rows.Count;
+           timer1.Start();
         }
         public talkForm(string _username)
         {
@@ -74,6 +77,30 @@ namespace JIM
                     DateTime.Now + "')");
             msgtb.Text = "";
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+             string today =  DateTime.Now.Year.ToString()+"_" + DateTime.Now.Month+"_" + DateTime.Now.Day;
+             var rows = MySQLHelperClass.ExecuteDataTable("select * from " + today).Rows;
+             if (rows.Count > talkcount) 
+             {
+                 var data= MySQLHelperClass.ExecuteDataTable("select * from "+today+" order by id limit " + talkcount.ToString() + "," + (rows.Count - talkcount).ToString() + ";");
+
+                 foreach (DataRow item in data.Rows)
+                 {
+                     msgrtb.Text += item[1] + ": " + item[3] + "\r\n" + item[2] + "\r\n";
+                 }
+                 talkcount = rows.Count;
+             }
+
+        }
+
+        private void msgrtb_TextChanged(object sender, EventArgs e)
+        {
+            msgrtb.SelectionStart = msgrtb.Text.Length;
+
+            msgrtb.ScrollToCaret(); 
         }
 
     }
