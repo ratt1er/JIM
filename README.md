@@ -17,9 +17,6 @@ MySQL版本：5.7.26
 
 ### 使用时请设置 `mailClass.cs` 的邮箱账号密码，不然会导致无法邮箱发送注册验证码 
 
-![登录](https://s1.ax1x.com/2020/05/07/YZOzjO.png)
-
-
 ![YG5KAO.png](https://s1.ax1x.com/2020/05/11/YG5KAO.png)
 ![YG5nHK.png](https://s1.ax1x.com/2020/05/11/YG5nHK.png)
 ![YG5mB6.png](https://s1.ax1x.com/2020/05/11/YG5mB6.png)
