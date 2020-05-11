@@ -29,28 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.sendbt = new System.Windows.Forms.Button();
             this.msgtb = new System.Windows.Forms.TextBox();
             this.msgrtb = new System.Windows.Forms.RichTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.sendbt = new MaterialSkin.Controls.MaterialRaisedButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // sendbt
-            // 
-            this.sendbt.Font = new System.Drawing.Font("宋体", 13F);
-            this.sendbt.ForeColor = System.Drawing.Color.Lime;
-            this.sendbt.Location = new System.Drawing.Point(335, 54);
-            this.sendbt.Name = "sendbt";
-            this.sendbt.Size = new System.Drawing.Size(106, 37);
-            this.sendbt.TabIndex = 1;
-            this.sendbt.Text = "发送";
-            this.sendbt.UseVisualStyleBackColor = false;
-            this.sendbt.Click += new System.EventHandler(this.sendbt_Click);
             // 
             // msgtb
             // 
@@ -62,7 +50,7 @@
             this.msgtb.Multiline = true;
             this.msgtb.Name = "msgtb";
             this.msgtb.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.msgtb.Size = new System.Drawing.Size(243, 88);
+            this.msgtb.Size = new System.Drawing.Size(329, 137);
             this.msgtb.TabIndex = 0;
             this.msgtb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.msgtb_KeyUp);
             // 
@@ -75,7 +63,7 @@
             this.msgrtb.Location = new System.Drawing.Point(0, 0);
             this.msgrtb.Name = "msgrtb";
             this.msgrtb.ReadOnly = true;
-            this.msgrtb.Size = new System.Drawing.Size(453, 279);
+            this.msgrtb.Size = new System.Drawing.Size(485, 158);
             this.msgrtb.TabIndex = 2;
             this.msgrtb.Text = "";
             this.msgrtb.TextChanged += new System.EventHandler(this.msgrtb_TextChanged);
@@ -87,8 +75,7 @@
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.SystemColors.Control;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 67);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -101,19 +88,35 @@
             this.splitContainer1.Panel2.Controls.Add(this.sendbt);
             this.splitContainer1.Panel2.Controls.Add(this.msgtb);
             this.splitContainer1.Panel2.SizeChanged += new System.EventHandler(this.splitContainer1_Panel2_SizeChanged);
-            this.splitContainer1.Size = new System.Drawing.Size(453, 384);
-            this.splitContainer1.SplitterDistance = 279;
+            this.splitContainer1.Size = new System.Drawing.Size(485, 321);
+            this.splitContainer1.SplitterDistance = 158;
             this.splitContainer1.TabIndex = 3;
             this.splitContainer1.TabStop = false;
             // 
+            // sendbt
+            // 
+            this.sendbt.AutoSize = true;
+            this.sendbt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.sendbt.Depth = 0;
+            this.sendbt.Icon = null;
+            this.sendbt.Location = new System.Drawing.Point(413, 104);
+            this.sendbt.MouseState = MaterialSkin.MouseState.HOVER;
+            this.sendbt.Name = "sendbt";
+            this.sendbt.Primary = true;
+            this.sendbt.Size = new System.Drawing.Size(51, 36);
+            this.sendbt.TabIndex = 4;
+            this.sendbt.Text = "发送";
+            this.sendbt.UseVisualStyleBackColor = true;
+            this.sendbt.Click += new System.EventHandler(this.sendbt_Click);
+            // 
             // talkForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 384);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(500, 400);
             this.Controls.Add(this.splitContainer1);
             this.Name = "talkForm";
             this.Text = "talkForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.talkForm_FormClosed);
             this.Load += new System.EventHandler(this.talkForm_Load);
             this.SizeChanged += new System.EventHandler(this.talkForm_SizeChanged);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -127,10 +130,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button sendbt;
         private System.Windows.Forms.TextBox msgtb;
         private System.Windows.Forms.RichTextBox msgrtb;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private MaterialSkin.Controls.MaterialRaisedButton sendbt;
     }
 }

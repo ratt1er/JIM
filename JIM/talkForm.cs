@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MaterialSkin.Controls;
 namespace JIM
 {
-    public partial class talkForm : Form
+    public partial class talkForm : MaterialForm
     {
         string username;
         int talkcount;
@@ -44,7 +44,7 @@ namespace JIM
             InitializeComponent();
 
             username= _username;
-            this.Text = "你好" + username;
+            this.Text = "你好，" + username;
         }
 
         private void sendbt_Click(object sender, EventArgs e)
@@ -126,11 +126,12 @@ namespace JIM
         }
         void sizeChange()
         {
-           
+            splitContainer1.Width = this.Width - 6;
+            splitContainer1.Height = this.Height-70;
             sendbt.Left = msgrtb.Right - sendbt.Width;
-            sendbt.Top = splitContainer1.Panel2.Height - sendbt.Height-10;
+            sendbt.Top = splitContainer1.Panel2.Height-40;
             msgtb.Width = splitContainer1.Panel2.Width -sendbt.Width - 30;
-            msgtb.Height = splitContainer1.Panel2.Height-10;
+            msgtb.Height = splitContainer1.Panel2.Height-15;
         
         }
 
@@ -147,6 +148,11 @@ namespace JIM
             {
                 sendMsg();
             }
+        }
+
+        private void talkForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            timer1.Stop();
         }
 
     }

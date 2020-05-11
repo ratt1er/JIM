@@ -8,9 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySQLHelper;
+using MaterialSkin.Controls;
 namespace JIM
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MaterialForm
     {
         string code="code";
         public MainForm()
@@ -22,10 +23,15 @@ namespace JIM
 
         private void lbt_Click(object sender, EventArgs e)
         {
+            lbt_Click();
+
+
+        }void lbt_Click() 
+        {
             MySQLHelperClass.connectionString = "server = localhost; user = root; database = jim; port = 3306; password = thisisjim1!";
 
             if (lusernametb.Text == "" ||
-                luserpswtb.Text == "" )
+                luserpswtb.Text == "")
             {
                 message("输入框不能为空");
                 return;
@@ -34,65 +40,16 @@ namespace JIM
             {
                 message("账号密码不匹配");
             }
-            else 
+            else
             {
-                message("欢迎回来："+lusernametb.Text);
-                 Hide();
-                 talkForm form = new talkForm(lusernametb.Text);
-             form.ShowDialog();
-             Show();
+                message("欢迎回来：" + lusernametb.Text);
+                Hide();
+                talkForm form = new talkForm(lusernametb.Text);
+                form.ShowDialog();
+                Show();
             }
-
-
         }
 
-        private void rebt_Click(object sender, EventArgs e)
-        {
-
-            if (rusernametb.Text == "" || 
-                ruserpswtb.Text == "" || 
-                rerpswtb.Text == "" || 
-                mailCodetb.Text == ""||
-                rmailtb.Text=="") 
-            {
-                message("输入框不能为空");
-                return;
-            }
-            if ( rerpswtb.Text != ruserpswtb.Text)
-            {
-                message("两次密码不匹配！");
-                return;
-            } if (mailCodetb.Text != code) 
-            {
-                message("验证码不匹配");
-                return;
-            }
-            if (MySQLHelperClass.ExecuteScalar("SELECT * from user WHERE username='" + rusernametb.Text + "';") != null)
-            {
-                message("用户名");
-                return;
-            }
-            try
-            {
-                MySQLHelperClass.ExecuteNonQuery("INSERT INTO user (username,usermail, userpsw) VALUES ('" + rusernametb.Text + "','" + rmailtb.Text + "','" + ruserpswtb.Text + "')");
-                message("注册成功");
-                if (lusernametb.Text == "" && luserpswtb.Text == "") {
-                    lusernametb.Text = rusernametb.Text;
-                    luserpswtb.Text = ruserpswtb.Text;
-                    lartc.SelectedIndex = 0;
-                }
-                rusernametb.Text = ""; 
-                ruserpswtb.Text = "";
-                rerpswtb.Text = ""; 
-                mailCodetb.Text = "";
-                rmailtb.Text = "";
-            }
-            catch (Exception ee)
-            {
-                message(ee.Message);
-            }
-            
-        }
         void message(string msg)
         {
             MessageBox.Show(msg);
@@ -105,30 +62,41 @@ namespace JIM
             code = msg[1];
         }
 
-        private void lusernametb_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar ==13 ) 
-            {
-                luserpswtb.Focus();
-            }
-        }
+     
 
-        private void luserpswtb_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-                lbt.Focus();
-            }
-        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             lusernametb.Focus();
         }
 
-        private void ltb_Click(object sender, EventArgs e)
-        {
 
+        private void rebt_Click(object sender, EventArgs e)
+        {
+            rebt_Click();
+        }
+        void rebt_Click() 
+        {
+            Hide();
+            RegisterForm form = new RegisterForm();
+            form.ShowDialog();
+            Show();
+        }
+
+        private void lusernametb_KeyPress(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                luserpswtb.Focus();
+            }
+        }
+
+        private void luserpswtb_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                lbt_Click();
+            }
         }
     }
 }
