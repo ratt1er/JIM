@@ -1,4 +1,4 @@
-此软件为C#编写，命名为JIM
+﻿此软件为C#编写，命名为JIM
 ====
 >使用的集成环境为PHP Study\
 MySQL版本：5.7.26
@@ -20,7 +20,8 @@ MySQL版本：5.7.26
 ![登录](https://s1.ax1x.com/2020/05/07/YZOzjO.png)
 
 
-![注册](https://s1.ax1x.com/2020/05/07/YZOxgK.png)
-![发送信息界面](https://s1.ax1x.com/2020/05/07/YZXpuD.png)
+![YG5KAO.png](https://s1.ax1x.com/2020/05/11/YG5KAO.png)
+![YG5nHK.png](https://s1.ax1x.com/2020/05/11/YG5nHK.png)
+![YG5mB6.png](https://s1.ax1x.com/2020/05/11/YG5mB6.png)
 ![发送注册码](https://s1.ax1x.com/2020/05/07/YZOv36.png)
 
