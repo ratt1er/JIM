@@ -1,0 +1,12 @@
+D:\Code\JIM\JIM\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+D:\Code\JIM\JIM\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\Code\JIM\JIM\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\Code\JIM\JIM\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+D:\Code\JIM\JIM\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\Code\JIM\JIM\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+D:\Code\JIM\JIM\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\Code\JIM\JIM\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\Code\JIM\JIM\WindowsFormsApplication1\bin\Debug\DataTools.dll
+D:\Code\JIM\JIM\WindowsFormsApplication1\bin\Debug\MySql.Data.dll
+D:\Code\JIM\JIM\WindowsFormsApplication1\bin\Debug\DataTools.pdb
+D:\Code\JIM\JIM\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources

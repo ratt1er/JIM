@@ -1,0 +1,7 @@
+D:\Code\JIM\DataTools\obj\Debug\DataTools.csprojResolveAssemblyReference.cache
+D:\Code\JIM\DataTools\bin\Debug\DataTools.dll
+D:\Code\JIM\DataTools\bin\Debug\DataTools.pdb
+D:\Code\JIM\DataTools\bin\Debug\MySql.Data.dll
+D:\Code\JIM\DataTools\bin\Debug\Newtonsoft.Json.dll
+D:\Code\JIM\DataTools\obj\Debug\DataTools.dll
+D:\Code\JIM\DataTools\obj\Debug\DataTools.pdb
