@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataTools;
+using tools;
+using config;
 namespace tools
 {
     public class login_information
@@ -14,18 +16,19 @@ namespace tools
         {
 
         }
-        public static void userLogin(string username, string IPPort, string operate)
+        public static void userLogin(string _username, string _IPPort, string operate)
         {
             string today = DateTime.Now.Year.ToString() + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day;
-            dataTools data = new dataTools("localhost", "root", "login_information", 3306, "thisisjim1!");
-            var a = data.insert(today, new string[] { "username", "IPPort", "operate", "time" }, new string[] { username, IPPort, operate, DateTime.Now.ToString() });
-
+            dataTools data = new dataTools(configClass.databaseip, configClass.databaseusername, "login_information", configClass.databaseport, configClass.psw);
             if (operate == "resign")
             {
-                data.conMySql("localhost", "root", "keydata", "thisisjim1!");
-                data.delete(today, new string[] { "username" }, new string[] { username });
+                data.conMySql(configClass.databaseip, configClass.databaseusername, "keydata", configClass.psw);
+                data.deleteOr(today, new string[] { "IPPort","username" }, new string[] { _IPPort ,_username});
                 return;
             }
+            var a = data.insert(today, new string[] { "username", "IPPort", "operate", "time" }, new string[] { _username, _IPPort, operate, DateTime.Now.ToString() });
+
+            
 
         }
         public static string get_key(string username, string IPPort)
@@ -33,7 +36,7 @@ namespace tools
             var key = set_key();
 
             string today = DateTime.Now.Year.ToString() + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day;
-            dataTools data = new dataTools("localhost", "root", "keydata", 3306, "thisisjim1!");
+            dataTools data = new dataTools(configClass.databaseip, configClass.databaseusername, "keydata", configClass.databaseport, configClass.psw);
 
             while (true)
             {

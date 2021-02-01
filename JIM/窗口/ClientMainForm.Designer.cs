@@ -33,6 +33,7 @@
             this.loginStatusTbl = new MaterialSkin.Controls.MaterialLabel();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.loginPasswordTbl = new MaterialSkin.Controls.MaterialLabel();
             this.loginAccountTbl = new MaterialSkin.Controls.MaterialLabel();
             this.loginAccountTb = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -95,6 +96,7 @@
             this.loginStatusTbl.Size = new System.Drawing.Size(41, 19);
             this.loginStatusTbl.TabIndex = 40;
             this.loginStatusTbl.Text = "你好";
+            this.loginStatusTbl.Click += new System.EventHandler(this.loginStatusTbl_Click);
             // 
             // materialTabControl1
             // 
@@ -110,6 +112,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.materialRaisedButton1);
             this.tabPage1.Controls.Add(this.loginPasswordTbl);
             this.tabPage1.Controls.Add(this.loginAccountTbl);
             this.tabPage1.Controls.Add(this.loginAccountTb);
@@ -123,6 +126,24 @@
             this.tabPage1.Size = new System.Drawing.Size(300, 153);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "首页";
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // materialRaisedButton1
+            // 
+            this.materialRaisedButton1.AutoSize = true;
+            this.materialRaisedButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialRaisedButton1.Depth = 0;
+            this.materialRaisedButton1.Font = new System.Drawing.Font("宋体", 9F);
+            this.materialRaisedButton1.Icon = null;
+            this.materialRaisedButton1.Location = new System.Drawing.Point(176, 81);
+            this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton1.Name = "materialRaisedButton1";
+            this.materialRaisedButton1.Primary = true;
+            this.materialRaisedButton1.Size = new System.Drawing.Size(51, 36);
+            this.materialRaisedButton1.TabIndex = 48;
+            this.materialRaisedButton1.Text = "退出";
+            this.materialRaisedButton1.UseVisualStyleBackColor = true;
+            this.materialRaisedButton1.Click += new System.EventHandler(this.materialRaisedButton1_Click);
             // 
             // loginPasswordTbl
             // 
@@ -329,6 +350,7 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField ipTb;
         private MaterialSkin.Controls.MaterialSingleLineTextField portTb;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
     }
 }
 

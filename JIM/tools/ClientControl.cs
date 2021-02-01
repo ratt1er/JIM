@@ -45,11 +45,14 @@ namespace tools
             catch (Exception)
             {
                 connection_status = "连接服务器失败,正在重试";
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
                 Connet(ip, port);
             }
 
 
+        }public void disConnet()
+        {
+            clientSocket.Close();
         }
         private void Receive()
         {

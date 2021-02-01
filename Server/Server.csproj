@@ -7,7 +7,7 @@
     <ProjectGuid>{DCCCEF21-2E7A-4216-8B0C-674B559F0A65}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Server</RootNamespace>
+    <RootNamespace>tools</RootNamespace>
     <AssemblyName>Server</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -33,14 +33,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialSkin">
-      <HintPath>..\JIM\MaterialSkin.dll</HintPath>
+      <HintPath>..\API\MaterialSkin.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
-      <HintPath>..\JIM\MySql.Data.dll</HintPath>
+      <HintPath>..\API\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\API\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="窗口\ServerMainForm.resx">
       <DependentUpon>ServerMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -73,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
@@ -90,6 +91,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\config\config.csproj">
+      <Project>{90a8b722-8f41-4a83-845a-1850d552b76f}</Project>
+      <Name>config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataTools\DataTools.csproj">
       <Project>{a543ee4e-efb8-45e4-a25e-f61432de1e6e}</Project>
       <Name>DataTools</Name>

@@ -1,7 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using DataTools;
+using Newtonsoft.Json;
+using reply_entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -14,13 +17,14 @@ namespace tools
     public class ServerControl
     {
         static private Socket serverSocket;
+        string condition = "stop";
+        string ip;
+        int port;
         List<Socket> sockets = new List<Socket>();
         public string connection_status = "";
         public string clientMsg = "";
         string welcomeMsg = "欢迎使用音社内测版~";
         List<Task> tasks = new List<Task>();
-        Thread threadAccept;
-        Thread threadReceive;
         public ServerControl()
         {
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -31,53 +35,53 @@ namespace tools
         
         public void Start(string _ip, int _port)
         {
-            serverSocket.Bind(new IPEndPoint(IPAddress.Parse(_ip), 10086));
-            serverSocket.Listen(20);
+            ip = _ip;
+            port = _port;
+               serverSocket.Bind(new IPEndPoint(IPAddress.Parse(_ip), _port));
+            serverSocket.Listen(1000);
 
-            threadAccept = new Thread(Accept);
-            threadAccept.IsBackground = true;
-            threadAccept.Start();
-
-            JsonHelper.server_local_interactive_serialization("启动成功");
+            ThreadPool.QueueUserWorkItem(new WaitCallback(Accept));
+            condition = "start";
+            connection_status = JsonHelper.server_local_interactive_serialization("start", _ip, "服务器", "已启动");
 
 
         }
         public void Start(string _ip, int _port, string _msg)
         {
+
+            ip = _ip;
+            port = _port;
             welcomeMsg = _msg;
-            serverSocket.Bind(new IPEndPoint(IPAddress.Parse(_ip), 10086));
+            serverSocket.Bind(new IPEndPoint(IPAddress.Parse(_ip), _port));
             serverSocket.Listen(20);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(Accept));
 
 
-            threadAccept = new Thread(Accept);
-            threadAccept.IsBackground = true;
-            threadAccept.Start();
-
-            JsonHelper.server_local_interactive_serialization("启动成功");
+            condition = "start";
+            connection_status = JsonHelper.server_local_interactive_serialization("start", _ip, "服务器", "已启动");
 
 
         }
-        private void Accept()
+        private void Accept(object obj)
         {
-            while (true)
+            while (true )
             {
+
+                Socket client = serverSocket.Accept();
                 try
                 {
-                    Socket client = serverSocket.Accept();
                     IPEndPoint point = client.RemoteEndPoint as IPEndPoint;
 
-                    connection_status = JsonHelper.server_local_interactive_serialization(point.ToString(), "已连接");
-                    client.Send(Encoding.UTF8.GetBytes(JsonHelper.server_reply_serialization("prompt", welcomeMsg)));
+                    connection_status = JsonHelper.server_local_interactive_serialization("con", point.ToString(), "游客", "已连接");
+                    client.Send(Encoding.UTF8.GetBytes(JsonHelper.server_serialization("server", welcomeMsg,"prompt",null)));
 
                     sockets.Add(client);
-                    
-                    threadReceive = new Thread(Receive);
-                    threadReceive.IsBackground = true;
-                    threadReceive.Start(client);
+
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(Receive),client);
                 }
                 catch (Exception ex)
                 {
-                    connection_status = "错误：" + ex.Message+"(一秒后重试)";
+                    connection_status = JsonHelper.server_local_interactive_serialization("error", ip+":["+port+"]", ex.Message.ToString());
                     Thread.Sleep(1000);
                 }
             }
@@ -89,7 +93,7 @@ namespace tools
         {
             Socket client = obj as Socket;
             IPEndPoint point = client.RemoteEndPoint as IPEndPoint;
-
+            clientJson userMsgJSON =new clientJson ();
             try
             {
                 byte[] _msg = new byte[1024];
@@ -99,37 +103,70 @@ namespace tools
                     return;
                 }
                 clientMsg = JsonHelper.server_local_interactive_serialization(point.ToString(), Encoding.UTF8.GetString(_msg, 0, msgLen));
+                var IPPortJSON = JsonHelper.server_local_interactive_deserialization(clientMsg);
+                var IPport = IPPortJSON.IPPort;
+                userMsgJSON = JsonHelper.client_deserialization(IPPortJSON.msg);
+                switch (userMsgJSON.type)
+                {
 
+                    case "login":
+                        var msg = loginClass.loginCheck(userMsgJSON.username, userMsgJSON.psw, IPport);
+                        Send(JsonHelper.server_local_interactive_serialization(IPport, msg));
+                        connection_status = JsonHelper.server_local_interactive_serialization("login",point.ToString(),"["+userMsgJSON.username+"]", "尝试登录");
+                        break;
+                    case "msg":
+                        setMsgClass.setMsg(userMsgJSON.username, userMsgJSON.receiver, userMsgJSON.msg, userMsgJSON.key);
+                        break;
+                    case "searchfriends":
+                        Send(searchfriendsClass.searchfriends(userMsgJSON.username, userMsgJSON.msg, userMsgJSON.key, IPport));
+                        break;
+                    case "addfriends":
+
+                       Send( addfriendsClass.addfriends(IPport,userMsgJSON.username, userMsgJSON.msg, userMsgJSON.key));
+                       break;
+                    case "gethistory":
+                      Send( gethistoryClass.gethistory(IPport, userMsgJSON.receiver, userMsgJSON.username, userMsgJSON.key));
+                        break;
+                    case "removefriends":
+
+                        Send(removefriendsClass.removefriends(IPport, userMsgJSON.receiver, userMsgJSON.username, userMsgJSON.key));
+                        break;
+                    default:
+                        break;
+                }
+
+
+
+                clientMsg = "";
                 Receive(client);
             }
             catch (Exception)
             {
-                connection_status = JsonHelper.server_local_interactive_serialization(point.ToString(), "已断开");
+                foreach (var item in sockets)
+                {
+                    if (item.RemoteEndPoint.ToString() == point.ToString())
+                    {
+
+                        login_information.userLogin(null, point.ToString(), "resign");
+                        connection_status = JsonHelper.server_local_interactive_serialization("discon", point.ToString(), userMsgJSON.username, "已断开");
+                    }
+                }
+               
 
             }
         }
-        public bool Stop()
+        public void Stop()
         {
             try
             {
-                if (threadReceive == null && threadAccept == null) return false;
-                if (threadReceive == null)
-                { 
-                    threadAccept.Abort();
-                } if (threadAccept == null)
-                {
-                    threadReceive.Abort();
-                }
-                serverSocket.Close();
-                connection_status = "已关闭";
-                return true;
-            }
-            catch (Exception e)
-            {
-                connection_status = JsonHelper.server_local_interactive_serialization("错误：" + e.Message);
-                return false;
-            }
 
+                serverSocket.Close();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
         public void Send(string _json)
         {
@@ -155,7 +192,7 @@ namespace tools
             }
             catch (Exception e)
             {
-                connection_status = JsonHelper.server_local_interactive_serialization(item, "错误：" + e.Message);
+                connection_status = JsonHelper.server_local_interactive_serialization("error", item, e.Message.ToString());
             }
 
         }

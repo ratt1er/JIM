@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\API\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,11 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="connet_reply_entity.cs" />
+    <Compile Include="clientJson.cs" />
+    <Compile Include="msgClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="serverJson.cs" />
     <Compile Include="server_local_interactive.cs" />
-    <Compile Include="server_reply_entity.cs" />
-    <Compile Include="user_requests_entity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

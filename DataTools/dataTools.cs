@@ -10,10 +10,14 @@ namespace DataTools
     {
         string conStr;
         string database;
-        bool conState = false;
         public dataTools()
         {
 
+        }
+        public dataTools(string _server, string _user, int _port, string _password)
+        {
+            conStr = "server = " + _server + "; user = " + _user +  "; port = " + _port.ToString() + "; password = " + _password;
+            MySQLHelperClass.connectionString = conStr;
         }
         /// <summary>
         /// 
@@ -37,7 +41,7 @@ namespace DataTools
         }
         public void conMySql(string _server, string _user, string _database, string _password)
         {
-            conStr = "server = " + _server + "; user = " + _user + "; database = " + _database + "; port = 3306; password = " + _password;
+            conStr = "server = " + _server + "; user = " + _user + "; database = " + _database + "; port = databaseport; password = " + _password;
             database = _database;
             MySQLHelperClass.connectionString = conStr;
         }
@@ -85,15 +89,19 @@ namespace DataTools
             return table.Rows;
         }
 
-        public bool tableExit(string _database, string _tableName)
+        public bool tableExit( string _tableName)
         {
-            var count = MySQLHelperClass.ExecuteScalar("select count(*)  from information_schema.TABLES t where t.TABLE_SCHEMA ='" + _database + "' and t.TABLE_NAME ='" + _tableName + "'").msg.ToString();
+            var count = MySQLHelperClass.ExecuteScalar("select count(*)  from information_schema.TABLES t where t.TABLE_SCHEMA ='" + database + "' and t.TABLE_NAME ='" + _tableName + "'").msg.ToString();
             return int.Parse(count) == 1;
+        }
+        public reMsg createDataBase(string _databasename)
+        {
+            return MySQLHelperClass.ExecuteNonQuery("CREATE DATABASE " + _databasename + ";");
         }
         public reMsg insert(string _tableName, string[] row_1, string[] row_2)
         {
 
-            if (tableExit(database, _tableName))
+            if (tableExit( _tableName))
             {
                 return insertSub(_tableName, row_1, row_2);
 
@@ -101,7 +109,7 @@ namespace DataTools
 
 
             //如果表不存在就创建一个
-            var str = "CREATE TABLE " + _tableName + "(id INT NOT NULL AUTO_INCREMENT, ";
+            var str = "CREATE TABLE " + _tableName + " (id INT NOT NULL AUTO_INCREMENT, ";
             string a = "";
             for (int i = 0; i < row_1.Length; i++)
             {
@@ -125,7 +133,7 @@ namespace DataTools
         private reMsg insertSub(string _tableName, string[] row_1, string[] row_2)
         {
 
-            var a = "INSERT INTO " + _tableName;
+            var a = "INSERT INTO " + _tableName+" ";
             string b = "(";
             string c = "(";
             for (int i = 0; i < row_1.Length; i++)
@@ -151,7 +159,7 @@ namespace DataTools
                 return new reMsg("成功");
             }
         }
-        public reMsg delete(string _tableName, string[] row_1, string[] row_2)
+        public reMsg deleteAnd(string _tableName, string[] row_1, string[] row_2)
         {
             var a = "DELETE FROM " + _tableName + " where ";
 
@@ -164,6 +172,34 @@ namespace DataTools
                 if (i < row_1.Length - 1)
                 {
                     b += " and ";
+                }
+            }
+
+            var c = a + b;
+
+            var remsg = MySQLHelperClass.ExecuteNonQuery(c);
+            if (remsg.kind == "error")
+            {
+                return remsg;
+            }
+            else
+            {
+                return new reMsg("成功");
+            }
+        }
+        public reMsg deleteOr(string _tableName, string[] row_1, string[] row_2)
+        {
+            var a = "DELETE FROM " + _tableName + " where ";
+
+            var b = "";
+
+            for (int i = 0; i < row_1.Length; i++)
+            {
+                b += row_1[i] + "='" + row_2[i] + "'";
+
+                if (i < row_1.Length - 1)
+                {
+                    b += " or ";
                 }
             }
 
@@ -193,7 +229,81 @@ namespace DataTools
             }
         }public DataTable getTable(string _tableName) 
         {
+            try
+            {
+                
             return (DataTable)MySQLHelperClass.ExecuteDataTable("select * from " + _tableName).msg;
+            }
+            catch (Exception)
+            {
+                return new DataTable();
+            }
+        }
+        public reMsg deleteTable(string _tableName)
+        {
+            var a = "DROP TABLE " + _tableName;
+            try
+            {
+              return(  MySQLHelperClass.ExecuteNonQuery(a));
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+        public reMsg searchAndList(string _tableName, string[] row_1, string[] row_2)
+        {
+
+            var a = "select * from " + _tableName + " where ";
+            var b = "";
+
+            for (int i = 0; i < row_1.Length; i++)
+            {
+                b += row_1[i] + "='" + row_2[i] + "' ";
+
+                if (i < row_1.Length - 1)
+                {
+                    b += " and ";
+                }
+            }
+
+            var c = a + b;
+
+            var remsg = MySQLHelperClass.ExecuteDataTable(c);
+            if (remsg.kind == "error")
+            {
+                return remsg;
+            }
+            var table = (DataTable)remsg.msg;
+
+            return new reMsg(remsg.kind, table.Rows);
+        }
+        public reMsg searchOrList(string _tableName, string[] row_1, string[] row_2)
+        {
+            var a = "select * from " + _tableName + " where ";
+            var b = "";
+
+            for (int i = 0; i < row_1.Length; i++)
+            {
+                b += row_1[i] + "='" + row_2[i] + "' ";
+
+                if (i < row_1.Length - 1)
+                {
+                    b += " or ";
+                }
+            }
+
+            var c = a + b;
+
+            var remsg = MySQLHelperClass.ExecuteDataTable(c);
+            if (remsg.kind == "error")
+            {
+                return remsg;
+            }
+            var table = (DataTable)remsg.msg;
+
+            return new reMsg(remsg.kind, table.Rows);
         }
     }
 }

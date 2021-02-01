@@ -21,7 +21,7 @@ namespace JIM
         {
             msgtb.Focus();
             sizeChange();
-            MySQLHelperClass.connectionString = "server = localhost; user = root; database = talkdata; port = 3306; password = thisisjim1!";
+            MySQLHelperClass.connectionString = "server = localhost; user = root; database = talkdata; port = databaseport; password = thisisjim1!";
           var dataTable= MySQLHelperClass.ExecuteDataTable("show tables");
         
            string today =  DateTime.Now.Year.ToString()+"_" + DateTime.Now.Month+"_" + DateTime.Now.Day;

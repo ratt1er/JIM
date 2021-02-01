@@ -17,7 +17,7 @@ namespace JIM
         public RegisterForm()
         {
             InitializeComponent();
-       //     MySQLHelperClass.connectionString = "server = localhost; user = root; database = jim; port = 3306; password = thisisjim1!";
+       //     MySQLHelperClass.connectionString = "server = localhost; user = root; database = jim; port = databaseport; password = thisisjim1!";
 
         }
 

@@ -1,0 +1,2 @@
+D:\Code\JIM\config\bin\Debug\config.dll
+D:\Code\JIM\config\bin\Debug\config.pdb

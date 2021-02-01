@@ -9,13 +9,11 @@ using JIM.窗口;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
-using DSAPI;
 using reply_entity;
 namespace JIM
 {
     public partial class ClientMainForm : MaterialForm
     {
-        string code="code";
 
         public Thread threadAccept;
         ClientControl client;
@@ -25,27 +23,34 @@ namespace JIM
             InitializeComponent();
 
             Control.CheckForIllegalCrossThreadCalls = false;
-        //    MySQLHelperClass.connectionString = "server = localhost; user = root; database = jim; port = 3306; password = thisisjim1!";
-
         }
 
         private void lbt_Click(object sender, EventArgs e)
         {
-            lbt_Click();
-
-
-        }
-        void lbt_Click() 
-        {
-           
             if (loginAccountTb.Text == "" ||
               loginPasswordTb.Text == "")
             {
                 message("输入框不能为空");
                 return;
             }
-            var str = JsonHelper.client_requests_serialization("login", loginAccountTb.Text, loginPasswordTb.Text);
-            client.Send(str);
+            if (key != "") 
+            {
+
+                MainForm main = new MainForm(key, loginAccountTb.Text, client);
+                main.ShowDialog();
+                return;
+                
+            }
+            lbt_Click();
+
+
+        }
+        void lbt_Click()
+        {
+
+            
+            var json = JsonHelper.client_account_serialization("server", "login", loginAccountTb.Text, loginPasswordTb.Text,null,null);
+            client.Send(json);
         }
 
         void message(string msg)
@@ -53,20 +58,13 @@ namespace JIM
 
             MessageBox.Show(msg);
         }
-        void message(string msg,string caption)
+        void message(string msg, string caption)
         {
 
-            MessageBox.Show(msg,caption);
+            MessageBox.Show(msg, caption);
         }
 
-        private void sendCodebt_Click(object sender, EventArgs e)
-        {
-            var msg = mailClass.send("from_china@163.com");
-            MessageBox.Show(msg[0]);
-            code = msg[1];
-        }
 
-     
 
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -83,7 +81,7 @@ namespace JIM
 
         private void Accept()
         {
-            
+
             if (client.connection_status != "")
             {
                 loginStatusTbl.Text = client.connection_status;
@@ -91,39 +89,37 @@ namespace JIM
             }
             if (client.serverMsg != "")
             {
-                try
-                {
+                    var sre = JsonHelper.server_deserialization(client.serverMsg);
 
-                    var sre = JsonHelper.server_reply_deserialization(client.serverMsg);
-
-
-                    if (sre.type == "prompt")
+                    if (sre.sender == "server")
                     {
-
-                        message(sre.serverMessages,"你好");
-                        if (sre.userKay != null) 
+                        switch (sre.type)
                         {
-                            key = sre.userKay;
+                            case "prompt":
+                                message(sre.msg, "你好");
+                                if (sre.key != null)
+                                {
+                                    key = sre.key;
 
-                            //此处为登录成功
-                            MainForm main = new MainForm(key);
-                           main.ShowDialog();
-                         //   talkForm talkform = new talkForm(key,loginAccountTb.Text);
-                         //   talkform.ShowDialog();
+                                    //此处为登录成功
+                                    loginStatusTbl.Text = sre.msg;
+                                    MainForm main = new MainForm(key, loginAccountTb.Text, client);
+                                    main.ShowDialog();
+                                }
+                                break;
+                            case "PersonalLetter":
+
+                                message(sre.msg, "站内私信");
+                                break;
+                            case "GlobalMessage":
+
+                                message(sre.msg, "全局消息");
+
+                                break;
                         }
-                    } if (sre.type == "PersonalLetter") 
-                    {
-                        message(sre.serverMessages, "站内私信");
-                    } if (sre.type == "GlobalMessage") 
-                    {
-                        message(sre.serverMessages, "全局消息");
                     }
-                }
-                catch (Exception)
-                {
-                    loginStatusTbl.Text = client.serverMsg;
-                }
-               
+                
+
                 client.serverMsg = "";
             }
             Thread.Sleep(100);
@@ -133,9 +129,9 @@ namespace JIM
         private void rebt_Click(object sender, EventArgs e)
         {
             message("暂不开放注册，请您耐心留意音社动态", "抱歉");
-          //  rebt_Click();
+            //  rebt_Click();
         }
-        void rebt_Click() 
+        void rebt_Click()
         {
             Hide();
             RegisterForm form = new RegisterForm();
@@ -159,7 +155,7 @@ namespace JIM
             }
         }
 
-        
+
         private void materialRaisedButton1_Click_1(object sender, EventArgs e)
         {
             client = new ClientControl();
@@ -176,6 +172,29 @@ namespace JIM
         }
 
         private void materialTabSelector1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        {
+            if (key != "")
+            {
+                client.disConnet();
+                key = "";
+            }
+            else
+            {
+                message("你还没有登录账户", "提示");
+            }
+        }
+
+        private void loginStatusTbl_Click(object sender, EventArgs e)
         {
 
         }

@@ -1,11 +1,8 @@
-D:\Code\JIM\JIM\tools\obj\Debug\tools.csprojResolveAssemblyReference.cache
 D:\Code\JIM\JIM\tools\bin\Debug\tools.dll
 D:\Code\JIM\JIM\tools\bin\Debug\tools.pdb
-D:\Code\JIM\JIM\tools\bin\Debug\MySql.Data.dll
-D:\Code\JIM\JIM\tools\bin\Debug\Newtonsoft.Json.dll
-D:\Code\JIM\JIM\tools\bin\Debug\reply_entity.dll
-D:\Code\JIM\JIM\tools\bin\Debug\reply_entity.pdb
-D:\Code\JIM\JIM\tools\obj\Debug\tools.dll
-D:\Code\JIM\JIM\tools\obj\Debug\tools.pdb
+D:\Code\JIM\JIM\tools\bin\Debug\config.dll
 D:\Code\JIM\JIM\tools\bin\Debug\DataTools.dll
+D:\Code\JIM\JIM\tools\bin\Debug\reply_entity.dll
+D:\Code\JIM\JIM\tools\bin\Debug\config.pdb
 D:\Code\JIM\JIM\tools\bin\Debug\DataTools.pdb
+D:\Code\JIM\JIM\tools\bin\Debug\reply_entity.pdb

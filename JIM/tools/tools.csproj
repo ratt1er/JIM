@@ -16,10 +16,10 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\API\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,12 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\MySql.Data.dll</HintPath>
+    <Reference Include="DataTools">
+      <HintPath>..\..\API\DataTools.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\API\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\API\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,19 +48,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addfriendsClass.cs" />
     <Compile Include="ClientControl.cs" />
+    <Compile Include="gethistoryClass.cs" />
     <Compile Include="JsonHelper.cs" />
+    <Compile Include="loginClass.cs" />
     <Compile Include="login_information.cs" />
     <Compile Include="mailClass.cs" />
-    <Compile Include="messageClass.cs" />
+    <Compile Include="removefriendsClass.cs" />
+    <Compile Include="setMsgClass.cs" />
     <Compile Include="MySQLHelperClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="searchfriendsClass.cs" />
     <Compile Include="ServerControl.cs" />
+    <Compile Include="serverTools.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DataTools\DataTools.csproj">
-      <Project>{a543ee4e-efb8-45e4-a25e-f61432de1e6e}</Project>
-      <Name>DataTools</Name>
+    <ProjectReference Include="..\..\config\config.csproj">
+      <Project>{90a8b722-8f41-4a83-845a-1850d552b76f}</Project>
+      <Name>config</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\reply_entity\reply_entity.csproj">
       <Project>{2a4e4e06-0578-4ebc-b81f-94de7665b943}</Project>
