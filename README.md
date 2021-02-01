@@ -3,22 +3,31 @@
 >使用的集成环境为PHP Study\
 MySQL版本：5.7.26
 
-1.环境里有两个数据库，分别为
+请在[configClass.cs](https://github.com/ratt1er/JIM/blob/master/config/configClass.cs)中修改配置项
 
-    jim
-    talkdata
-其中 `jim` 里存在一个“user”表用了保存用户信息,其中三个字段,分别是`username` `userpsw` `usermail`
+    public class configClass
+    {
 
-`talkdata` 库中的表为程序以`year_month_day`为模板自动生成
+        public static string serverip = "127.0.0.1";
+        public static string databaseip = "localhost";
+        public static int databaseport = 3306;
+        public static int listenport = 10086;
+        public static string psw = "thisisjim1!";
+        public static string databaseusername = "root";
+    }
 
->数据库的密码为 `thisisjim1!`
+1.环境里有四个数据库，分别为
 
-#### 目前已经做到了可以(邮箱)注册，登录，和收发信息
+>"jim","friends", "keydata", "login_information", "talkdata"
 
-### 使用时请设置 `mailClass.cs` 的邮箱账号密码，不然会导致无法邮箱发送注册验证码 
+其中 `jim` 里放置用户信息（账号密码等）  
+其中 `friends` 里放置用户的好友列表  
+其中 `keydata` 里放置用户的登录key，可以以此验证用户操作是否合法，每个用户key登录可获得，退出即毁  
+其中 `login_information` 里放置用户操作信息，如登录退出  
 
-![YG5KAO.png](https://s1.ax1x.com/2020/05/11/YG5KAO.png)
-![YG5nHK.png](https://s1.ax1x.com/2020/05/11/YG5nHK.png)
-![YG5mB6.png](https://s1.ax1x.com/2020/05/11/YG5mB6.png)
-![发送注册码](https://s1.ax1x.com/2020/05/07/YZOv36.png)
+
+#### 目前已经做到了可以登录和收发信息
+
+### 初次使用请使用[Server项目](https://github.com/ratt1er/JIM/tree/master/Server)初始化数据库
+![初始化界面](https://s3.ax1x.com/2021/02/01/yeKuHH.png)
 
