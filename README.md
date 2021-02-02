@@ -3,7 +3,7 @@
 >使用的集成环境为PHP Study\
 MySQL版本：5.7.26
 
-请在[configClass.cs](https://github.com/ratt1er/JIM/blob/master/config/configClass.cs)中修改配置项
+请在[configClass.cs](https://github.com/ratt1er/JIM/blob/master/APIProject/config/configClass.cs)中修改配置项
 
     public class configClass
     {
@@ -28,6 +28,6 @@ MySQL版本：5.7.26
 
 #### 目前已经做到了可以登录和收发信息
 
-### 初次使用请使用[Server项目](https://github.com/ratt1er/JIM/tree/master/Server)初始化数据库
+### 初次使用请使用[Server项目](https://github.com/ratt1er/JIM/tree/master/UIProject/Server)初始化数据库
 ![初始化界面](https://s3.ax1x.com/2021/02/01/yeKuHH.png)
 
