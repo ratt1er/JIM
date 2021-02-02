@@ -1,2 +1,0 @@
-D:\Code\JIM\reply_entity\bin\Debug\reply_entity.dll
-D:\Code\JIM\reply_entity\bin\Debug\reply_entity.pdb

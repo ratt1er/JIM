@@ -1,0 +1,7 @@
+D:\Code\JIM\reply_entity\bin\Debug\reply_entity.dll
+D:\Code\JIM\reply_entity\bin\Debug\reply_entity.pdb
+D:\Code\JIM\reply_entity\obj\Debug\reply_entity.csprojResolveAssemblyReference.cache
+D:\Code\JIM\reply_entity\obj\Debug\reply_entity.dll
+D:\Code\JIM\reply_entity\obj\Debug\reply_entity.pdb
+D:\Code\JIM\APIProject\API\reply_entity.dll
+D:\Code\JIM\APIProject\API\reply_entity.pdb
